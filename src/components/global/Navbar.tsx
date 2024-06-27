@@ -7,20 +7,22 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   return (
-    <div className="w-full back backdrop-brightness-75 bg-black/25 backdrop-blur-lg">
-      <div className="mx-auto top-0 sticky py-3 max-w-xl flex justify-between items-center">
+    <div className="w-full top-0 sticky back border-b border-black backdrop-brightness-75 dark:bg-black/25 bg-black/40 backdrop-blur-lg">
+      <div className="mx-auto w-full py-3 max-w-screen-xl flex justify-between items-center">
         <div>
           <Link href="/">
             <h1
               className="text-xl 
-            font-bold"
+            font-bold md:p-0 pl-4"
             >
               Logo
             </h1>
           </Link>
         </div>
-        <div className="flex gap-2 items-center">
-          <Button>Login</Button>
+        <div className="flex gap-2 items-center md:p-0 pr-4">
+          <Link href={"/login"}>
+            <Button>Login</Button>
+          </Link>
           <ModeToggle />
         </div>
       </div>
