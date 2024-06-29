@@ -14,7 +14,6 @@ import {
 import { LogOut } from "lucide-react";
 import { SignOut } from "@/app/actions/auth.action";
 import { useSession } from "next-auth/react";
-import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 
 type Props = {};
@@ -22,7 +21,9 @@ type Props = {};
 const Navbar = (props: Props) => {
   const session = useSession();
   const router = useRouter();
-
+  if (session.data?.user) {
+    router.push("/login");
+  }
   return (
     <div className="w-full top-0 sticky back border-b border-black backdrop-brightness-75 dark:bg-black/10 dark:border-white bg-black/40 backdrop-blur-lg">
       <div className="mx-auto w-full py-3 max-w-screen-xl flex justify-between items-center">
@@ -64,7 +65,6 @@ const Navbar = (props: Props) => {
               <Button>Login</Button>
             </Link>
           )}
-
           <ModeToggle />
         </div>
       </div>
