@@ -10,8 +10,10 @@ generator client {
 model Bike {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
+  image       String
   description String
-  price       Int
+  model       String
+  price       String
   owner       String
   location    String
   createdAt   DateTime @default(now())

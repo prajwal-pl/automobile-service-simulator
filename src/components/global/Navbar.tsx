@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { LogOut } from "lucide-react";
+import { LogOut, Plus, User } from "lucide-react";
 import { SignOutButton, useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
@@ -43,8 +43,15 @@ const Navbar = (props: Props) => {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem>
+                  <Link href={"/add-bike"}>
+                    <div className="flex items-center gap-2">
+                      <Plus /> Add Bike
+                    </div>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
                   <SignOutButton redirectUrl="/sign-in">
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 cursor-pointer">
                       <LogOut /> Sign out
                     </div>
                   </SignOutButton>
