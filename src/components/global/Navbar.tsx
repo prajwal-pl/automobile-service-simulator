@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { ModeToggle } from "../ui/mode-toggle";
-import { auth, signOut } from "../../../auth";
+// import { auth, signOut } from "../../../auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -12,17 +12,20 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { LogOut } from "lucide-react";
-import { SignOut } from "@/app/actions/auth.action";
-import { useSession } from "next-auth/react";
+// import { SignOut } from "@/app/actions/auth.action";
+// import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { currentUser } from "@clerk/nextjs/server";
+import { SignOutButton, useAuth } from "@clerk/nextjs";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
-  const session = useSession();
+  // const session = useSession();
   const router = useRouter();
-  if (session.data?.user) {
-    router.push("/login");
+  const user = useAuth();
+  if (!user.isSignedIn) {
+    router.push("/sign-in");
   }
   return (
     <div className="w-full top-0 sticky back border-b border-black backdrop-brightness-75 dark:bg-black/10 dark:border-white bg-black/40 backdrop-blur-lg">
@@ -38,7 +41,7 @@ const Navbar = (props: Props) => {
           </Link>
         </div>
         <div className="flex gap-2 items-center md:p-0 pr-4">
-          {session.status === "authenticated" && (
+          {user.isSignedIn && (
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <Avatar>
@@ -47,24 +50,21 @@ const Navbar = (props: Props) => {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem>
-                  <div
-                    onClick={() => {
-                      SignOut();
-                      window.location.reload();
-                    }}
-                    className="flex gap-2"
-                  >
-                    <LogOut /> Sign out
-                  </div>
+                  <SignOutButton>
+                    <div className="flex gap-2">
+                      <LogOut /> Sign out
+                    </div>
+                  </SignOutButton>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           )}
-          {session.status === "unauthenticated" && (
-            <Link href={"/login"}>
+          {!user.isSignedIn && (
+            <Link href={"/sign-up"}>
               <Button>Login</Button>
             </Link>
           )}
+
           <ModeToggle />
         </div>
       </div>

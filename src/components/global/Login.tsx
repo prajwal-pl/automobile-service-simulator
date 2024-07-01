@@ -20,7 +20,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { LoginUser } from "@/app/actions/auth.action";
 
 export function LoginForm() {
   const formSchema = z.object({
@@ -35,8 +34,6 @@ export function LoginForm() {
     },
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
-    LoginUser(values);
-
     console.log(values);
   }
   return (

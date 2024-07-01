@@ -3,9 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/global/Navbar";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { SessionProvider } from "next-auth/react";
-import AuthProvider from "@/AuthProvider";
-
+import { ClerkProvider } from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,9 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} dark:bg-black`}>
-        <AuthProvider>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${inter.className} dark:bg-black`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -31,8 +29,8 @@ export default function RootLayout({
             <Navbar />
             {children}
           </ThemeProvider>
-        </AuthProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

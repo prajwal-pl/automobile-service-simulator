@@ -18,6 +18,7 @@ model User {
   sessions      Session[]
   // Optional for WebAuthn support
   Authenticator Authenticator[]
+  bikes         Bike[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -79,4 +80,16 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, credentialID])
+}
+
+model Bike {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  price       Int
+  owner       User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId     String   @db.ObjectId
+  location    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
