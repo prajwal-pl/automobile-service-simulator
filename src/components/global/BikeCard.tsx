@@ -11,25 +11,26 @@ import {
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { toast } from "react-hot-toast";
+import { Bike } from "@prisma/client";
 
-type Props = {};
+type Props = {
+  bike: Bike;
+};
 
-const BikeCard = (props: Props) => {
+const BikeCard = ({ bike }: Props) => {
   return (
     <div>
       <Card>
         <CardHeader className="space-y-2">
-          <CardTitle>Bike Card</CardTitle>
+          <CardTitle>{bike.name}</CardTitle>
           <Image
             className="w-full flex justify-center"
-            src="/demo.jpg"
+            src={bike.image}
             alt="bike"
             width={200}
             height={200}
           />
-          <CardDescription>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, id.
-          </CardDescription>
+          <CardDescription>{bike.description}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="w-full flex justify-between">
@@ -40,10 +41,10 @@ const BikeCard = (props: Props) => {
               <p>Price</p>
             </div>
             <div className="space-y-2">
-              <p>John Doe</p>
-              <p>Bike Model</p>
-              <p>Somewhere</p>
-              <p>100$</p>
+              <p>{bike.owner}</p>
+              <p>{bike.model}</p>
+              <p>{bike.location}</p>
+              <p>{bike.price}$</p>
             </div>
           </div>
         </CardContent>
