@@ -19,8 +19,8 @@ const Home = async (props: Props) => {
         </p>
       </div>
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-12 sm:px-6 lg:px-8">
-        <h2 className="text-2xl mb-12 font-semibold">Available Two wheelers</h2>
-
+        <h2 className="text-2xl font-semibold">Available Two wheelers</h2>
+        <p className="text-lg mb-12 text-gray-500">Manage your bikes here</p>
         <BikeCards />
       </div>
     </div>

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Card,
@@ -9,6 +10,7 @@ import {
 } from "../ui/card";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { toast } from "react-hot-toast";
 
 type Props = {};
 
@@ -46,8 +48,13 @@ const BikeCard = (props: Props) => {
           </div>
         </CardContent>
         <CardFooter>
-          <Button className="w-full text-white bg-blue-500 hover:text-blue-500">
-            <span className="text-sm">Buy</span>
+          <Button
+            onClick={() => {
+              toast.success("Booked successfully!");
+            }}
+            className="w-full text-white bg-blue-500 hover:text-blue-500"
+          >
+            <span className="text-sm">Mark as Booked</span>
           </Button>
         </CardFooter>
       </Card>

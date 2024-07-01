@@ -6,14 +6,16 @@ import React, { useState } from "react";
 import { OurFileRouter } from "../api/uploadthing/core";
 import { Button } from "@/components/ui/button";
 import { newUploadAction } from "../actions/newUploadAction";
-
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 type Props = {};
 
 const AddBike = (props: Props) => {
+  const router = useRouter();
   const [input, setInput] = useState<any>({
     name: "",
     description: "",
-    price: 0,
+    price: "",
     owner: "",
     model: "",
     location: "",
@@ -21,7 +23,14 @@ const AddBike = (props: Props) => {
   });
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    newUploadAction(input);
+    newUploadAction(input)
+      .then((res) => {
+        toast.success("Bike added successfully!");
+        router.push("/");
+      })
+      .catch((err) => {
+        toast.error("Error adding bike");
+      });
   };
   return (
     <div className="mx-auto w-full max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8">
