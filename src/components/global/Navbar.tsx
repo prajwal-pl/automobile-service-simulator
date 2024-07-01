@@ -3,8 +3,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { ModeToggle } from "../ui/mode-toggle";
-// import { auth, signOut } from "../../../auth";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,21 +11,15 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { LogOut } from "lucide-react";
-// import { SignOut } from "@/app/actions/auth.action";
-// import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { currentUser } from "@clerk/nextjs/server";
 import { SignOutButton, useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
-  // const session = useSession();
   const router = useRouter();
   const user = useAuth();
-  if (!user.isSignedIn) {
-    router.push("/sign-in");
-  }
+
   return (
     <div className="w-full top-0 sticky back border-b border-black backdrop-brightness-75 dark:bg-black/10 dark:border-white bg-black/40 backdrop-blur-lg">
       <div className="mx-auto w-full py-3 max-w-screen-xl flex justify-between items-center">
@@ -50,7 +43,7 @@ const Navbar = (props: Props) => {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem>
-                  <SignOutButton>
+                  <SignOutButton redirectUrl="/sign-in">
                     <div className="flex gap-2">
                       <LogOut /> Sign out
                     </div>
