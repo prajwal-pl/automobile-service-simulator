@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { LogOut, Plus, User } from "lucide-react";
+import { Bike, LogOut, Plus, User } from "lucide-react";
 import { SignOutButton, useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
@@ -24,12 +24,13 @@ const Navbar = (props: Props) => {
     <div className="w-full top-0 sticky back border-b border-black backdrop-brightness-75 dark:bg-black/10 dark:border-white bg-black/40 backdrop-blur-lg">
       <div className="mx-auto w-full py-3 max-w-screen-xl flex justify-between items-center">
         <div>
-          <Link href="/">
+          <Link href="/" className="flex items-center gap-2">
+            <Bike />
             <h1
               className="text-xl 
             font-bold md:p-0 pl-4"
             >
-              Logo
+              Yamaha
             </h1>
           </Link>
         </div>
