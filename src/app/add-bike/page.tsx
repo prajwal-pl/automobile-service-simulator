@@ -37,7 +37,9 @@ const AddBike = (props: Props) => {
   if (!user.isSignedIn) {
     return (
       <div className="h-screen flex flex-col gap-3 items-center justify-center">
-        <p className="text-4xl font-bold">Oops! You've not signed in yet.</p>
+        <p className="text-4xl font-bold">
+          Oops! {"You've"} not signed in yet.
+        </p>
         <p className="text-xl font-medium">Please sign in to continue.</p>
       </div>
     );
