@@ -1,5 +1,4 @@
-import React from "react";
-import { redirect } from "next/navigation";
+ import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
 import BikeCards from "@/components/global/BikeCards";
 
